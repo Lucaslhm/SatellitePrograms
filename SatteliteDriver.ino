@@ -1,3 +1,10 @@
+/**  
+* SatteliteDriver.ino - Main driver class for the Sattelite Controller
+* @author Lucas Machi && Emerson Dove
+* @Revisor Lucas Machi
+* @version 4.6 
+* @see SatellitePrograms/README.md
+*/ 
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_LSM9DS0.h>
