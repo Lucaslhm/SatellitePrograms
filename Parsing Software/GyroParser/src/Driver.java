@@ -1,3 +1,10 @@
+/**  
+* GyroParser.Java - Simple class for parsing only the gyro data out of the master data text file
+* @author Benjamin Chalmeta
+* @Revisor Lucas Machi
+* @version 2.0 
+* @see SatellitePrograms/README.md
+*/ 
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.io.*;
