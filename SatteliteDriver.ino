@@ -78,9 +78,9 @@ void setup(void)
 {
   sensor.begin(Wire, GAIN, MEASUREMENT_MODE); // Initializes the sensor with non default values
 
-  lsm.begin();
+  lsm.begin(); //Initializes the LSM sensor
 
-  pinMode(6, OUTPUT);
+  pinMode(6, OUTPUT); //Defines pin6 as an OUTPUT
 
   displaySensorDetails(); // Displays details about Gyro sensor **CAN WE REMOVE THIS?**
 
@@ -92,7 +92,7 @@ void setup(void)
 
 void loop(void)
 {
-  spinMotor(millis());
+  spinMotor(millis()); //Spins the motor
   lightReadings(); //Print Light Readings
   gyroReadings();  //Print Gyro Readings
 
@@ -101,6 +101,7 @@ void loop(void)
 
 
 void spinMotor(long el) {
+//checks the time the arduino has been running and chooses a spin speed based off it
   if (el < 10000 && el > 0) {
     if (switchStep == 0) {
       Serial.print("@1 "); Serial.println(el);
@@ -142,15 +143,16 @@ void spinMotor(long el) {
 }
 
 void startMotor() {
+//Gets the motor started at max speed
   analogWrite(6,255);
   delay(100);
 }
 
 void gyroReadings() {
 
-  sensors_event_t accel, mag, gyro, temp;
+  sensors_event_t accel, mag, gyro, temp; //Creates the sensor events
 
-  lsm.getEvent(&accel, &mag, &gyro, &temp);
+  lsm.getEvent(&accel, &mag, &gyro, &temp); //records the readings at the momement of call
 
   Serial.print("*"); //Tag the data for parsing
 
