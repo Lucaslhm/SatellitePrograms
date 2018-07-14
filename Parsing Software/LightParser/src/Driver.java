@@ -1,6 +1,15 @@
+/**  
+* LightParser.Java - Simple class for parsing only the light data out of the master data text file
+* @author Benjamin Chalmeta
+* @Revisor Lucas Machi
+* @version 2.0 
+* @see SatellitePrograms/README.md
+*/ 
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.io.*;
+
+
 public class Driver
 {
     public static void main (String []args)throws Exception
