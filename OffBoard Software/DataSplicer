@@ -3,6 +3,7 @@ import javax.swing.filechooser.FileSystemView;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class Main {
@@ -11,7 +12,12 @@ public class Main {
     private static ArrayList<String> lines = new ArrayList<String>();
     public static void main(String[] args) throws Exception{
         String InputResult, OutputResult;
+        String temp;
+        int loss = 0;
+        int chris = 0;
+        int good = 0;
 
+/*
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 
         int returnValue = jfc.showOpenDialog(null);
@@ -28,7 +34,11 @@ public class Main {
         {
             InputResult = "";
         }
+        */
+        System.out.println();
+        InputResult = "/Users/Emerson/Downloads/Raw Data/file_0";
         System.out.println(InputResult);
+        System.out.println();
         InputResult = InputResult.substring(0,InputResult.length()-6);
         for (int i = 0; i <= 244; i++) {
             try {
@@ -40,25 +50,52 @@ public class Main {
             }
             String line = null;
             while((line = reader.readLine())!=null) {
+                temp = line;
                 try {
                     if (line.indexOf("C") != -1) {
-                        lines.add("CHRISTOPHER IS SAD");
+                        //lines.add("CHRISTOPHER IS SAD");
+                        chris++;
                     }
                     else if (line.indexOf("S") != -1){
-                        lines.add("CHRISTOPHER IS SAD");
+                        //lines.add("CHRISTOPHER IS SAD");
+                        chris++;
+                    }
+                    else if(line.indexOf("A") != -1 || line.indexOf("a") != -1)
+                    {
+                        //lines.add("Data Loss");
+                        loss++;
+                    }
+                    else if(line.charAt(0) == '$'){
+                        if((line.length()- temp.replace(",","").length()) == 14 ){
+                            lines.add(line);
+                            good++;
+                        }
+
+                    }
+                    else if(line.charAt(0) == '*'){
+                        if((line.length()- temp.replace(",","").length()) == 10 ){
+                            lines.add(line);
+                            good++;
+                        }
                     }
                     else {
-                        lines.add(line);
+                        //lines.add(line);
+                        loss++;
                     }
                 }
                 catch (Exception e){
-                    lines.add("ERROR");
+                    //lines.add("ERROR");
                 }
             }
         }
         for (int i = 0; i < lines.size(); i++) {
             System.out.println(lines.get(i));
         }
+
+        System.out.println("Lost: " + loss);
+        System.out.println("Chris: " + chris);
+        System.out.println("Good: " + good);
+
 
     }
 }
